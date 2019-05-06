@@ -9,6 +9,9 @@ class Stack:
         self.top += 1
         self.list[self.top] = value
 
+    def size(self):
+        return len(self.list)
+
     def pop(self):
         if self.is_empty():
             return -1
@@ -32,21 +35,19 @@ import sys
 n = sys.stdin.readline()
 stack = Stack(len(n))
 i = 0
-stick = 0
 result = 0
 
 while True:
 
     if n[i:i + 2] == '()':
-        result += stick
+        result += stack.size()
         i += 2
     elif n[i] == '(':
-        stick += 1
         result += 1
-        stack.push(1)
+        stack.push("(")
         i += 1
     elif n[i] == ')':
-        stick -= 1
+        result -= 1
         stack.pop()
         i += 1
 
